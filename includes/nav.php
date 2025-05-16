@@ -27,13 +27,13 @@
       <div class="flex justify-between h-16">
         <!-- Logo and Brand -->
         <div class="flex items-center">
-          <a href="#" class="text-white text-3xl font-bold">مزاد</a>
+          <a href="index.php" class="text-white text-3xl font-bold">مزاد</a>
         </div>
         
         <!-- Desktop Nav Links -->
         <div class="hidden md:flex items-center space-x-4">
-          <a href="#" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Accueil</a>
-          <a href="#" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Enchères</a>
+          <a href="inde.php" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Accueil</a>
+          <a href="objects.php" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Enchères</a>
           <a href="#" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Catégories</a>
         </div>
         
@@ -42,8 +42,6 @@
         
         <!-- Desktop Auth Buttons -->
         <div class="hidden md:flex items-center">
-          <i class="fas fa-bell text-white hover:text-auction-yellow cursor-pointer transition duration-300 ml-4"></i>
-          <i class="fas fa-user text-white hover:text-auction-yellow cursor-pointer transition duration-300 ml-4"></i>
           <a href="login.php" class="bg-white text-auction-red hover:bg-gray-100 ml-4 px-4 py-1 rounded-full text-sm font-medium transition duration-300">Connexion</a>
           <a href="sign.php"class="bg-auction-yellow text-white hover:bg-yellow-600 ml-2 px-4 py-1 rounded-full text-sm font-medium transition duration-300">S'inscrire</a>
         </div>
