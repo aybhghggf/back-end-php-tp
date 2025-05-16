@@ -1,4 +1,14 @@
+<?php 
+if(isset($_POST['name'])&&isset( $_POST['email'])&&isset($_POST['password'])){
+    $Nom = $_POST['name'];
+    $Email = $_POST['email'];
+    $Password = $_POST['password'];
+    $hasedpassword= password_hash( $Password, PASSWORD_DEFAULT );
+    require_once 'config.php';
+    SignIn( $Nom, $Email, $hasedpassword );
+}
 
+?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -99,7 +109,7 @@
 </head>
 <body>
 
-  <form class="register-form" action="register.php" method="POST">
+  <form class="register-form" action="sign.php" method="POST">
     <h2>إنشاء حساب جديد</h2>
 
     <div class="form-group">

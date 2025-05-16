@@ -2,6 +2,7 @@
 require_once 'config.php';
 $objects= getAllObjects();
 
+
 ?>
 
 <!DOCTYPE html>
