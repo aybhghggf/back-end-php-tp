@@ -73,8 +73,7 @@ $objects= getAllObjects();
                 <div
                     class="auction-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition-all duration-300">
                     <div class="relative">
-                        <img src="/api/placeholder/320/200" alt="Vintage Rolex Watch"
-                            class="w-full h-48 object-cover" />
+                        <img src="<?php echo htmlspecialchars($obj['url_photo']); ?>" alt="Auction Image" class="w-full h-48 object-cover" />
                         <div
                             class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 m-2 rounded">
                             <div class="flex items-center">

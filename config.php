@@ -1,13 +1,15 @@
 <?php 
 require_once 'db.php';
 
-function getAllObjects(){
+function getAllObjects() {
     global $pdo; 
-    $stmt = $pdo->prepare('SELECT * FROM objects');
+    $stmt = $pdo->prepare("
+        SELECT * from objects INNER JOIN photos ON objects.lot = photos.object_lot
+    ");
     $stmt->execute();
-    $obj= $stmt->fetchAll();
-    return $obj;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 function SignIn($Nom,$email,$password){
     global $pdo;
     $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (?,?,?)');
