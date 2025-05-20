@@ -1,3 +1,11 @@
+<?php 
+if( isset( $_POST['email'])&& isset($_POST['password']) ){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  require_once 'config.php';
+  Login( $email, $password );
+}
+?>
 <!DOCTYPE html>
 <html lang="ar">
 <head>

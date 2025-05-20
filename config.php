@@ -21,21 +21,23 @@ function getMesSign(){
         echo '';
     }
 }
-function Login( $email, $password){
+function Login($email, $password){
     global $pdo;
-    $stmt = $pdo->prepare( 'SELECT * FROM users WHERE email = ? AND password = ?' );
-    $stmt-> execute([$email, $password]);
-    $user = $stmt-> fetch();
-    if($user){
-            if($user['email'] == $email && $user['password'] == $password){
-                    session_start();
-                    $_SESSION['email'] = $email;
-                    $_SESSION['user']= true;
-                    $_SESSION['username']= $user['name'];
-                    header('location:index.php?message= login');
-            }else{
-                header('location:login.php?message= error');
-            }
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?');
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
+
+    if($user && password_verify($password, $user['password'])){
+        session_start();
+        $_SESSION['email'] = $email;
+        $_SESSION['user'] = true;
+        $_SESSION['username'] = $user['name'];
+        header('Location: index.php?message=login');
+        exit();
+    } else {
+        header('Location: login.php?message=error');
+        exit();
     }
 }
+
 ?>

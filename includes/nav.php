@@ -1,3 +1,8 @@
+<?php 
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,30 +46,37 @@
        
         
         <!-- Desktop Auth Buttons -->
+        <?php 
+          if (!isset($_SESSION['user'])) {
+        ?>
         <div class="hidden md:flex items-center">
           <a href="login.php" class="bg-white text-auction-red hover:bg-gray-100 ml-4 px-4 py-1 rounded-full text-sm font-medium transition duration-300">Connexion</a>
-          <a href="sign.php"class="bg-auction-yellow text-white hover:bg-yellow-600 ml-2 px-4 py-1 rounded-full text-sm font-medium transition duration-300">S'inscrire</a>
+          <a href="sign.php" class="bg-auction-yellow text-white hover:bg-yellow-600 ml-2 px-4 py-1 rounded-full text-sm font-medium transition duration-300">S'inscrire</a>
         </div>
-        
+        <?php } else { ?>
+        <div class="hidden md:flex items-center">
+          <a href="Logout.php" class="bg-auction-yellow text-white hover:bg-yellow-600 ml-2 px-4 py-1 rounded-full text-sm font-medium transition duration-300">Déconnexion</a>
+        </div>
+        <?php } ?>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
           <button id="menuBtn" class="text-white hover:bg-auction-light-red p-2 rounded-md focus:outline-none">
             <i class="fas fa-bars"></i>
           </button>
         </div>
-      </div>
-    </div>
-    
-    <!-- Mobile menu, hidden by default -->
-    <div id="mobileMenu" class="hidden md:hidden bg-auction-red border-t border-auction-dark-red">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="#" class="text-white block hover:bg-auction-light-red px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+            </div>
+          </div>
+          
+          <!-- Mobile menu, hidden by default -->
+          <div id="mobileMenu" class="hidden md:hidden bg-auction-red border-t border-auction-dark-red">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="index.php" class="text-white block hover:bg-auction-light-red px-3 py-2 rounded-md text-base font-medium">Accueil</a>
         <a href="objects.php" class="text-white block hover:bg-auction-light-red px-3 py-2 rounded-md text-base font-medium">Enchères</a>
         <a href="#" class="text-white block hover:bg-auction-light-red px-3 py-2 rounded-md text-base font-medium">Catégories</a>
-      </div>
-      
-      <!-- Mobile Search -->
-      <div class="px-2 pt-2 pb-3 border-t border-auction-dark-red">
+            </div>
+            
+            <!-- Mobile Search -->
+            <div class="px-2 pt-2 pb-3 border-t border-auction-dark-red">
         <div class="relative">
           <input
             type="text"
@@ -75,16 +87,19 @@
             <i class="fas fa-search text-red-300 text-sm"></i>
           </div>
         </div>
-      </div>
-      
-      <!-- Mobile Auth -->
-      <div class="px-2 pt-2 pb-3 border-t border-auction-dark-red">
-        
-      <a href="sign.php"class="bg-white text-auction-red hover:bg-gray-100 w-full mb-2 px-4 py-2 rounded-full text-sm font-medium transition duration-300" >Connexion</a>
-      <a href="login.php"class="bg-auction-yellow text-white hover:bg-yellow-600 w-full px-4 py-2 rounded-full text-sm font-medium transition duration-300"></a>  
-
-      </div>
-    </div>
+            </div>
+            
+            <!-- Mobile Auth -->
+            <div class="px-2 pt-2 pb-3 border-t border-auction-dark-red">
+        <?php if (!isset($_SESSION['user'])) { ?>
+          <a href="login.php" class="bg-white text-auction-red hover:bg-gray-100 w-full mb-2 px-4 py-2 rounded-full text-sm font-medium transition duration-300 block">Connexion</a>
+          <a href="sign.php" class="bg-auction-yellow text-white hover:bg-yellow-600 w-full px-4 py-2 rounded-full text-sm font-medium transition duration-300 block">S'inscrire</a>
+        <?php } else { ?>
+          <span class="block bg-white text-auction-red w-full mb-2 px-4 py-2 rounded-full text-sm font-medium"><?php echo htmlspecialchars($_SESSION['user']['username'] ?? 'Utilisateur'); ?></span>
+          <a href="Logout.php" class="bg-auction-yellow text-white hover:bg-yellow-600 w-full px-4 py-2 rounded-full text-sm font-medium transition duration-300 block">Déconnexion</a>
+        <?php } ?>
+            </div>
+          </div>
   </nav>
 </body>
 <script src="scripts/script.js"></script>

@@ -102,3 +102,52 @@ INSERT INTO bids (user_id, object_lot, amount) VALUES
 
 
 SELECT * from objects INNER JOIN photos ON objects.lot = photos.object_lot;
+
+INSERT INTO users (name, email, password) VALUES
+('Nadia Hariri', 'nadia@example.com', 'hashed_password4'),
+('Mohamed Lahcen', 'mohamed@example.com', 'hashed_password5'),
+('Karima Bouzid', 'karima@example.com', 'hashed_password6');
+
+
+-- Tapis berbère
+INSERT INTO objects (user_id, categorie_id, title, description, price, price_min, price_max, closing_date, city, validated)
+VALUES (
+    4, 3, 'Tapis berbère fait main',
+    'Tapis traditionnel marocain tissé à la main, 2m x 3m.',
+    1800.00, 1600.00, 2200.00,
+    '2025-06-11 19:00:00', 'Meknès', TRUE
+);
+
+-- Service à thé marocain
+INSERT INTO objects (user_id, categorie_id, title, description, price, price_min, price_max, closing_date, city, validated)
+VALUES (
+    5, 3, 'Service à thé traditionnel',
+    'Complet avec plateau, théière et verres décorés. Neuf.',
+    600.00, 500.00, 700.00,
+    '2025-06-09 17:30:00', 'Tétouan', TRUE
+);
+
+-- Tableau d’art local
+INSERT INTO objects (user_id, categorie_id, title, description, price, price_min, price_max, closing_date, city, validated)
+VALUES (
+    6, 3, 'Peinture artistique sur toile',
+    'Œuvre originale d’un artiste local marocain.',
+    2500.00, 2300.00, 3000.00,
+    '2025-06-14 21:00:00', 'Essaouira', TRUE
+);
+
+-- Coffre ancien en bois
+INSERT INTO objects (user_id, categorie_id, title, description, price, price_min, price_max, closing_date, city, validated)
+VALUES (
+    4, 3, 'Coffre en bois sculpté',
+    'Coffre ancien pour décoration ou rangement, très bonne qualité.',
+    1500.00, 1300.00, 1800.00,
+    '2025-06-13 20:00:00', 'Ouarzazate', TRUE
+);
+
+
+INSERT INTO photos (url_photo, object_lot) VALUES
+('uploads/tapis_berbere.jpg', 4),
+('uploads/service_the.jpg', 5),
+('uploads/peinture_toile.jpg', 6),
+('uploads/coffre_bois.jpg', 7);
