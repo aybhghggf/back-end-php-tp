@@ -5,6 +5,20 @@ if( isset( $_POST['email'])&& isset($_POST['password']) ){
   require_once 'config.php';
   Login( $email, $password );
 }
+if(isset($_GET['message']) && $_GET['message'] == "sign") {
+  echo '
+  <div class="fixed top-8 left-1/2 transform -translate-x-1/2 z-50">
+    <div class="flex items-center gap-3 bg-white border-2 border-green-500 text-green-700 px-6 py-4 rounded-lg shadow-md" role="alert">
+      <span class="text-2xl">✔️</span>
+      <span class="font-medium">تم إنشاء الحساب بنجاح!</span>
+      <button onclick="this.parentElement.parentElement.style.display=\'none\'" class="ml-4 text-green-700 hover:text-green-900 focus:outline-none text-xl">
+        ×
+      </button>
+    </div>
+  </div>
+  ';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ar">
@@ -12,6 +26,7 @@ if( isset( $_POST['email'])&& isset($_POST['password']) ){
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>تسجيل الدخول</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {

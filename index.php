@@ -1,8 +1,19 @@
-<?php 
+<?php
 require_once 'config.php';
-$objects= getAllObjects();
-
-
+$objects = getAllObjects();
+if (isset($_GET['message']) && $_GET['message'] == "login") {
+    echo "
+<div class=\"fixed top-8 left-1/2 transform -translate-x-1/2 z-50\">
+    <div class=\"flex items-center gap-3 bg-white border-2 border-green-500 text-green-700 px-6 py-4 rounded-lg shadow-md\" role=\"alert\">
+        <span class=\"text-2xl\">✔️</span>
+        <span class=\"font-medium\">تم تسجيل الدخول بنجاح!</span>
+        <button onclick=\"this.parentElement.parentElement.style.display='none'\" class=\"ml-4 text-green-700 hover:text-green-900 focus:outline-none text-xl\">
+            ×
+        </button>
+    </div>
+</div>
+  ";
+}
 ?>
 
 <!DOCTYPE html>
@@ -66,39 +77,60 @@ $objects= getAllObjects();
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <?php 
-          foreach($objects as $obj):
-        ?>
-                <!-- Auction Item 1 -->
-                <div
-                    class="auction-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition-all duration-300">
-                    <div class="relative">
-                        <img src="<?php echo htmlspecialchars($obj['url_photo']); ?>" alt="Auction Image" class="w-full h-48 object-cover" />
-                        <div
-                            class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 m-2 rounded">
-                            <div class="flex items-center">
-                                <i class="fas fa-clock mr-1"></i>
-                                Live
+                <?php
+                foreach ($objects as $obj):
+                ?>
+                    <!-- Auction Item 1 -->
+                    <div
+                        class="auction-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md transition-all duration-300">
+                        <div class="relative">
+                            <img src="<?php echo htmlspecialchars($obj['url_photo']); ?>" alt="Auction Image" class="w-full h-48 object-cover" />
+                            <div
+                                class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 m-2 rounded">
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock mr-1"></i>
+                                    Live
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg text-gray-900 mb-2"></h3>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm"><?php echo $obj['title'] ?></p>
+                                    <p class="text-xl font-bold text-indigo-600"><?php echo $obj['price'] ?></p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-gray-500 text-sm"><?php echo $obj['description'] ?></p>
+                                    <!-- Button -->
+                                    <button onclick="openModal()"
+                                        class="mt-1 bg-indigo-600 hover:bg-indigo-700 text-white text-sm py-1 px-3 rounded-md transition duration-200">
+                                        Bid Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-gray-900 mb-2"></h3>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-gray-500 text-sm"><?php echo $obj['title'] ?></p>
-                                <p class="text-xl font-bold text-indigo-600"><?php echo $obj['price'] ?></p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-gray-500 text-sm"><?php echo $obj['description'] ?></p>
-                                <button
-                                    class="mt-1 bg-indigo-600 hover:bg-indigo-700 text-white text-sm py-1 px-3 rounded-md transition duration-200">
-                                    Bid Now
-                                </button>
+                <?php
+                endforeach
+                ?>
+                <!-- Modal -->
+                <form action="index.php" method="post">
+                    <div id="bidModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                        <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+                            <h2 class="text-lg font-semibold mb-4">Enter Your Bid</h2>
+                            <input type="number" id="bidAmount" placeholder="Enter bid amount" class="w-full border border-gray-300 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <div class="flex justify-end gap-2">
+                                <button onclick="closeModal()" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">Cancel</button>
+                                <button onclick="submitBid()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Submit</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <?php 
-            endforeach
-            ?>
+                </form>
+
+
+                <script src="scripts/modal.js"></script>
+
+</body>
+
+</html>
