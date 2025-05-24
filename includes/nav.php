@@ -37,7 +37,7 @@ if (!isset($_SESSION)) {
         
         <!-- Desktop Nav Links -->
         <div class="hidden md:flex items-center space-x-4">
-          <a href="inde.php" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Accueil</a>
+          <a href="index.php" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Accueil</a>
           <a href="objects.php" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Enchères</a>
           <a href="#" class="text-white hover:bg-auction-light-red px-3 py-2 rounded-md text-sm font-medium transition duration-300">Catégories</a>
         </div>
